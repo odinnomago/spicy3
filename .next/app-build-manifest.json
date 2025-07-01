@@ -16,25 +16,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/cadastro/loading": [
+    "/sobre/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/cadastro/loading.js"
-    ],
-    "/cadastro/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/cadastro/page.js"
-    ],
-    "/vip/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/vip/page.js"
-    ],
-    "/como-funciona/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/como-funciona/page.js"
+      "static/chunks/app/sobre/page.js"
     ],
     "/busca/loading": [
       "static/chunks/webpack.js",
@@ -46,15 +31,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/busca/page.js"
     ],
-    "/termos/page": [
+    "/vip/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/termos/page.js"
+      "static/chunks/app/vip/page.js"
     ],
-    "/privacidade/page": [
+    "/cadastro/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/privacidade/page.js"
+      "static/chunks/app/cadastro/loading.js"
+    ],
+    "/cadastro/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/cadastro/page.js"
+    ],
+    "/suporte/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/suporte/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

@@ -25,8 +25,8 @@ export function Header() {
             <Link href="/busca" className="text-gray-300 hover:text-white transition-colors">
               Buscar
             </Link>
-            <Link href="/como-funciona" className="text-gray-300 hover:text-white transition-colors">
-              Como Funciona
+            <Link href="/sobre" className="text-gray-300 hover:text-white transition-colors">
+              Sobre
             </Link>
             <Link href="/vip" className="text-gold-500 hover:text-gold-400 transition-colors font-semibold">
               Seja VIP
@@ -67,8 +67,8 @@ export function Header() {
               <Link href="/busca" className="text-gray-300 hover:text-white transition-colors">
                 Buscar
               </Link>
-              <Link href="/como-funciona" className="text-gray-300 hover:text-white transition-colors">
-                Como Funciona
+              <Link href="/sobre" className="text-gray-300 hover:text-white transition-colors">
+                Sobre
               </Link>
               <Link href="/vip" className="text-gold-500 hover:text-gold-400 transition-colors font-semibold">
                 Seja VIP

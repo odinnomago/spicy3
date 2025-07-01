@@ -25,14 +25,19 @@ const config: Config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#E50914", // Netflix Red
           foreground: "hsl(var(--primary-foreground))",
-          50: "#fef2f2",
-          100: "#fee2e2",
-          500: "#ef4444",
-          600: "#dc2626",
-          700: "#b91c1c",
-          900: "#7f1d1d",
+          50: "#FFEBEE",
+          100: "#FFCDD2",
+          200: "#EF9A9A",
+          300: "#E57373",
+          400: "#EF5350",
+          500: "#F44336",
+          600: "#E53935",
+          700: "#D32F2F",
+          800: "#C62828",
+          900: "#B71C1C",
+          950: "#880E4F",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -58,18 +63,18 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          400: "#fbbf24",
-          500: "#f59e0b",
-          600: "#d97706"
+        gold: { // Re-purposing gold for a darker red/maroon accent
+          DEFAULT: "#B20710", // Darker Netflix Red
+          400: "#800000", // Maroon
+          500: "#660000", // Darker Maroon
+          600: "#4C0000", // Even Darker Maroon
         },
-        dark: {
-          50: "#f8fafc",
-          100: "#f1f5f9",
-          800: "#1e293b",
-          900: "#0f172a",
-          950: "#020617",
+        dark: { // Netflix-like blacks
+          50: "#F5F5F5",
+          100: "#E0E0E0",
+          800: "#212121",
+          900: "#141414", // Netflix Black
+          950: "#0A0A0A",
         },
       },
       borderRadius: {

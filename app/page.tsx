@@ -1,14 +1,20 @@
 import { Header } from "@/components/header";
-import { SearchHero } from "@/components/search-hero";
-import { ProfileShowcase } from "@/components/profile-showcase";
-import { Footer } from "@/components/footer";
+import { LandingHeroSection } from "@/components/landing-hero-section";
+import { LandingShortcutsSection } from "@/components/landing-shortcuts-section";
+import { LandingAdvantagesSection } from "@/components/landing-advantages-section";
+import { LandingFeaturedModelsSection } from "@/components/landing-featured-models-section";
+import { LandingCheckoutPlansSection } from "@/components/landing-checkout-plans-section";
+import { LandingFooter as Footer } from "@/components/landing-footer";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-dark-950">
       <Header />
-      <SearchHero />
-      <ProfileShowcase />
+      <LandingHeroSection />
+      <LandingShortcutsSection />
+      <LandingAdvantagesSection />
+      <LandingFeaturedModelsSection />
+      <LandingCheckoutPlansSection />
       <Footer />
     </div>
   );

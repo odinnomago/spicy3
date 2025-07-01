@@ -1,9 +1,8 @@
 {
-  "/page": "app/page.js",
-  "/cadastro/page": "app/cadastro/page.js",
-  "/termos/page": "app/termos/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/vip/page": "app/vip/page.js",
-  "/privacidade/page": "app/privacidade/page.js",
   "/busca/page": "app/busca/page.js",
-  "/como-funciona/page": "app/como-funciona/page.js"
+  "/sobre/page": "app/sobre/page.js",
+  "/suporte/page": "app/suporte/page.js",
+  "/page": "app/page.js"
 }

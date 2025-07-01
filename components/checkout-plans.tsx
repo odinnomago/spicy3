@@ -122,18 +122,7 @@ export function CheckoutPlans() {
               <CardFooter className="p-6">
                 <Button
                   size="lg"
-                  className={cn(
-                    "w-full text-lg font-semibold",
-                    selectedPlan === plan.name
-                      ? plan.theme === "basic"
-                        ? "bg-primary-600 hover:bg-primary-700"
-                        : plan.theme === "bronze"
-                        ? "bg-amber-500 hover:bg-amber-600"
-                        : plan.theme === "gold"
-                        ? "bg-yellow-500 hover:bg-yellow-600"
-                        : "bg-blue-500 hover:bg-blue-600"
-                      : "bg-gray-700 hover:bg-gray-600 text-gray-300"
-                  )}
+                  className="w-full text-lg font-semibold bg-primary-600 hover:bg-primary-700"
                 >
                   {plan.name === "Plano Básico" ? "Começar Grátis" : "Assinar Agora"}
                 </Button>

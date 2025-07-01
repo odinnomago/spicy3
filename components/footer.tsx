@@ -24,8 +24,8 @@ export function Footer() {
               <Link href="/busca" className="block text-gray-400 hover:text-white transition-colors text-sm">
                 Buscar Perfis
               </Link>
-              <Link href="/como-funciona" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                Como Funciona
+              <Link href="/sobre" className="block text-gray-400 hover:text-white transition-colors text-sm">
+                Sobre
               </Link>
               <Link href="/vip" className="block text-gray-400 hover:text-white transition-colors text-sm">
                 Planos VIP
