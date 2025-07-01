@@ -1,7 +1,9 @@
 {
-  "/vip/page": "app/vip/page.js",
-  "/como-funciona/page": "app/como-funciona/page.js",
   "/page": "app/page.js",
   "/cadastro/page": "app/cadastro/page.js",
-  "/busca/page": "app/busca/page.js"
+  "/termos/page": "app/termos/page.js",
+  "/vip/page": "app/vip/page.js",
+  "/privacidade/page": "app/privacidade/page.js",
+  "/busca/page": "app/busca/page.js",
+  "/como-funciona/page": "app/como-funciona/page.js"
 }
