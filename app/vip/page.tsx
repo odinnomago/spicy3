@@ -1,13 +1,15 @@
 
 import { Header } from "@/components/header";
-import { VipCheckout } from "@/components/vip-checkout";
 import { Footer } from "@/components/footer";
+import { CheckoutPlans } from "@/components/checkout-plans";
+import { CheckoutPlansClients } from "@/components/checkout-plans-clients";
 
 export default function VipPage() {
   return (
     <div className="min-h-screen bg-dark-950">
       <Header />
-      <VipCheckout />
+      <CheckoutPlans />
+      <CheckoutPlansClients />
       <Footer />
     </div>
   );

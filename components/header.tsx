@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Heart, Menu, User, X } from "lucide-react"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import { SignupOptions } from "@/components/signup-options"
+import { LoginForm } from "@/components/login-form"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -42,8 +42,8 @@ export function Header() {
                   Entrar
                 </Button>
               </DialogTrigger>
-              <DialogContent className="bg-dark-900 border-gray-800 p-0">
-                <SignupOptions />
+              <DialogContent className="bg-dark-900 border-gray-800 p-0 max-w-sm rounded-lg">
+                <LoginForm />
               </DialogContent>
             </Dialog>
             <Button
@@ -81,8 +81,8 @@ export function Header() {
                       Entrar
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="bg-dark-900 border-gray-800 p-0">
-                    <SignupOptions />
+                  <DialogContent className="bg-dark-900 border-gray-800 p-0 max-w-sm rounded-lg">
+                    <LoginForm />
                   </DialogContent>
                 </Dialog>
                 <Button
