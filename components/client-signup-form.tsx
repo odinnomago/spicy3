@@ -1,0 +1,177 @@
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { ArrowLeft, User, Mail, Lock, Phone, MapPin } from "lucide-react"
+
+interface ClientSignupFormProps {
+  onBack: () => void
+}
+
+export function ClientSignupForm({ onBack }: ClientSignupFormProps) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phone: "",
+    city: "",
+    age: "",
+  })
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Handle form submission
+    console.log("Client signup:", formData)
+  }
+
+  return (
+    <section className="py-16 min-h-[80vh] flex items-center">
+      <div className="container mx-auto px-4">
+        <div className="max-w-md mx-auto">
+          <Button variant="ghost" onClick={onBack} className="mb-6 text-gray-400 hover:text-white">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Voltar
+          </Button>
+
+          <Card className="bg-dark-800/50 border-gray-700">
+            <CardHeader className="text-center">
+              <div className="mx-auto w-16 h-16 bg-primary-600/20 rounded-full flex items-center justify-center mb-4">
+                <User className="h-8 w-8 text-primary-500" />
+              </div>
+              <CardTitle className="text-2xl text-white">Cadastro de Cliente</CardTitle>
+              <p className="text-gray-400">Crie sua conta para acessar perfis premium</p>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-300 flex items-center">
+                    <User className="h-4 w-4 mr-2 text-primary-500" />
+                    Nome Completo
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full p-3 bg-dark-700 border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-300 flex items-center">
+                    <Mail className="h-4 w-4 mr-2 text-primary-500" />
+                    E-mail
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    className="w-full p-3 bg-dark-700 border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-300 flex items-center">
+                    <Phone className="h-4 w-4 mr-2 text-primary-500" />
+                    Telefone
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    className="w-full p-3 bg-dark-700 border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-300 flex items-center">
+                      <MapPin className="h-4 w-4 mr-2 text-primary-500" />
+                      Cidade
+                    </label>
+                    <select
+                      required
+                      className="w-full p-3 bg-dark-700 border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none"
+                      value={formData.city}
+                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    >
+                      <option value="">Selecione</option>
+                      <option value="sao-paulo">São Paulo</option>
+                      <option value="rio-janeiro">Rio de Janeiro</option>
+                      <option value="belo-horizonte">Belo Horizonte</option>
+                      <option value="brasilia">Brasília</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-300">Idade</label>
+                    <input
+                      type="number"
+                      min="18"
+                      required
+                      className="w-full p-3 bg-dark-700 border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none"
+                      value={formData.age}
+                      onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-300 flex items-center">
+                    <Lock className="h-4 w-4 mr-2 text-primary-500" />
+                    Senha
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    className="w-full p-3 bg-dark-700 border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none"
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-300 flex items-center">
+                    <Lock className="h-4 w-4 mr-2 text-primary-500" />
+                    Confirmar Senha
+                  </label>
+                  <input
+                    type="password"
+                    required
+                    className="w-full p-3 bg-dark-700 border border-gray-600 rounded-lg text-white focus:border-primary-500 focus:outline-none"
+                    value={formData.confirmPassword}
+                    onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                  />
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <input type="checkbox" required className="rounded border-gray-600 bg-dark-700" />
+                  <span className="text-sm text-gray-400">
+                    Aceito os{" "}
+                    <a href="/termos" className="text-primary-500 hover:underline">
+                      Termos de Uso
+                    </a>{" "}
+                    e{" "}
+                    <a href="/privacidade" className="text-primary-500 hover:underline">
+                      Política de Privacidade
+                    </a>
+                  </span>
+                </div>
+
+                <Button type="submit" className="w-full bg-primary-600 hover:bg-primary-700">
+                  Criar Conta
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
+  )
+}

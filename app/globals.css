@@ -1,0 +1,123 @@
+/**
+ * Spicy3 - Estilos Globais
+ * 
+ * Este arquivo contém todas as definições de estilos globais do projeto,
+ * incluindo variáveis de tema, componentes reutilizáveis e utilitários.
+ */
+
+/* Importações do Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Configurações Base */
+@layer base {
+  /* Variáveis do Tema - Modo Claro */
+  :root {
+    /* Cores do Sistema */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --radius: 0.5rem;
+
+    /* Cores Principais */
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 85.7% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --gold: 35 91% 52%;
+
+    /* Cores de Interface */
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Cores para Gráficos */
+    --chart-blue: 201 100% 41%;
+    --chart-red: 0 91% 71%;
+    --chart-yellow: 41 96% 58%;
+    --chart-green: 142 71% 45%;
+    --chart-purple: 262 83% 58%;
+    --chart-orange: 27 96% 61%;
+    --chart-pink: 330 81% 60%;
+    --chart-indigo: 245 58% 51%;
+    --chart-teal: 172 66% 50%;
+    --chart-cyan: 190 95% 39%;
+  }
+
+  /* Variáveis do Tema - Modo Escuro */
+  .dark {
+    /* Cores do Sistema */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    /* Cores Principais */
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 85.7% 97.3%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --gold: 35 91% 52%;
+
+    /* Cores de Interface */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+  }
+
+  /* Estilos Base */
+  * {
+    @apply border-border;
+  }
+
+  /* Configuração de Fontes */
+body {
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.font-playfair {
+  font-family: var(--font-playfair), Georgia, 'Times New Roman', Times, serif;
+}
+}
+
+/* Componentes Reutilizáveis */
+@layer components {
+  /* Card com Hover Effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 15px 25px rgba(239, 68, 68, 0.2);
+  }
+
+  /* Efeito de Blur para Backgrounds */
+  .blur-content {
+    @apply backdrop-blur-md bg-black/30;
+  }
+}
+
+/* Utilitários Personalizados */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
