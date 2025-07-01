@@ -1,18 +1,21 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
+import { useRouter } from "next/navigation" // Import for redirection
+import { supabase } from "@/lib/supabaseClient" // Import Supabase client
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Camera, Mail, Lock, Phone, MapPin, Upload, Crown } from "lucide-react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert" // For error messages
+import { ArrowLeft, Camera, Mail, Lock, Phone, MapPin, Upload, Crown, Terminal } from "lucide-react"
 
 interface ModelSignupFormProps {
   onBack: () => void
 }
 
 export function ModelSignupForm({ onBack }: ModelSignupFormProps) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     artisticName: "",
     email: "",
@@ -24,22 +27,118 @@ export function ModelSignupForm({ onBack }: ModelSignupFormProps) {
     bio: "",
     services: [] as string[],
     priceRange: "",
+    // photoFiles: [] as File[], // We'll handle file uploads separately if needed
   })
+  const [error, setError] = useState<string | null>(null)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const services = ["Acompanhante", "Massagem", "Jantar", "Eventos", "Viagens", "Fetiches"]
+  const availableServices = ["Acompanhante", "Massagem", "Jantar", "Eventos", "Viagens", "Fetiches"]
 
   const toggleService = (service: string) => {
-    setFormData({
-      ...formData,
-      services: formData.services.includes(service)
-        ? formData.services.filter((s) => s !== service)
-        : [...formData.services, service],
-    })
+    setFormData((prev) => ({
+      ...prev,
+      services: prev.services.includes(service)
+        ? prev.services.filter((s) => s !== service)
+        : [...prev.services, service],
+    }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files) {
+  //     setFormData({ ...formData, photoFiles: Array.from(e.target.files) });
+  //   }
+  // };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Model signup:", formData)
+    setError(null)
+    setSuccessMessage(null)
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("As senhas não coincidem.")
+      return
+    }
+    if (formData.password.length < 6) {
+      setError("A senha deve ter pelo menos 6 caracteres.")
+      return
+    }
+    if (formData.services.length === 0) {
+      setError("Selecione ao menos um serviço.")
+      return
+    }
+    // Add other specific validations as needed
+
+    setIsLoading(true)
+
+    try {
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: {
+            // Using 'artisticName' as 'full_name' in auth.users for models
+            // This is just an example, you might want a generic 'name' or handle it differently
+            full_name: formData.artisticName,
+          }
+        }
+      })
+
+      if (signUpError) {
+        setError(signUpError.message)
+        setIsLoading(false)
+        return
+      }
+
+      if (!signUpData.user) {
+        setError("Não foi possível criar o usuário. Tente novamente.")
+        setIsLoading(false)
+        return
+      }
+
+      // TODO: Handle photo uploads to Supabase Storage here if `formData.photoFiles` is populated.
+      // This would involve iterating through files, uploading them, and getting their public URLs.
+      // For now, we'll skip photo uploads in this step and assume avatar_url will be set later.
+
+      const { error: profileError } = await supabase
+        .from("profiles")
+        .insert({
+          id: signUpData.user.id, // Use the user's ID from auth.users as PK
+          user_id: signUpData.user.id, // Explicit FK
+          full_name: formData.artisticName, // Or a different field if 'name' is preferred for all users
+          // email: formData.email, // Already in auth.users
+          phone: formData.phone,
+          city: formData.city,
+          age: parseInt(formData.age, 10) || null,
+          bio: formData.bio,
+          profile_type: "modelo", // Set profile type
+          // Specific model fields
+          services_offered: formData.services, // formData.services is already string[]
+          price_range: formData.priceRange,    // formData.priceRange is a string
+          // avatar_url will be handled separately, currently defaults to null in DB if not provided
+        })
+
+      if (profileError) {
+        console.error("Error creating model profile:", profileError)
+        setError(`Usuário modelo criado, mas houve um erro ao salvar o perfil: ${profileError.message}. Por favor, contate o suporte.`)
+        // Potentially delete the auth user if profile creation fails: await supabase.auth.admin.deleteUser(signUpData.user.id)
+        setIsLoading(false)
+        return
+      }
+
+      setSuccessMessage("Cadastro de modelo realizado com sucesso! Verifique seu e-mail para confirmação. Seu perfil passará por análise. Você será redirecionado.")
+
+      setTimeout(() => {
+        router.push("/") // Redirect to home or a model dashboard
+      }, 4000)
+
+    } catch (catchError: any) {
+      setError(catchError.error_description || catchError.message || "Ocorreu um erro desconhecido.")
+    } finally {
+      if (error && !successMessage) {
+        setIsLoading(false)
+      }
+    }
   }
 
   return (
@@ -67,6 +166,20 @@ export function ModelSignupForm({ onBack }: ModelSignupFormProps) {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <Alert variant="destructive">
+                    <Terminal className="h-4 w-4" />
+                    <AlertTitle>Erro no Cadastro</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+                )}
+                {successMessage && (
+                  <Alert variant="default" className="bg-green-500/10 border-green-500 text-green-400">
+                    <Terminal className="h-4 w-4" />
+                    <AlertTitle>Sucesso!</AlertTitle>
+                    <AlertDescription>{successMessage}</AlertDescription>
+                  </Alert>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-300 flex items-center">
@@ -260,8 +373,9 @@ export function ModelSignupForm({ onBack }: ModelSignupFormProps) {
                 <Button
                   type="submit"
                   className="w-full bg-gradient-to-r from-gold-600 to-gold-700 hover:from-gold-700 hover:to-gold-800 text-black font-semibold"
+                  disabled={isLoading}
                 >
-                  Criar Perfil Premium
+                  {isLoading ? "Criando perfil..." : "Criar Perfil Premium"}
                 </Button>
 
                 <div className="text-center text-sm text-gray-400">

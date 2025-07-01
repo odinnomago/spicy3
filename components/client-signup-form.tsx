@@ -1,17 +1,20 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
+import { useRouter } from "next/navigation" // Import for redirection
+import { supabase } from "@/lib/supabaseClient" // Import Supabase client
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, User, Mail, Lock, Phone, MapPin } from "lucide-react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert" // For error messages
+import { ArrowLeft, User, Mail, Lock, Phone, MapPin, Terminal } from "lucide-react"
 
 interface ClientSignupFormProps {
   onBack: () => void
 }
 
 export function ClientSignupForm({ onBack }: ClientSignupFormProps) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,11 +24,94 @@ export function ClientSignupForm({ onBack }: ClientSignupFormProps) {
     city: "",
     age: "",
   })
+  const [error, setError] = useState<string | null>(null)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Client signup:", formData)
+    setError(null)
+    setSuccessMessage(null)
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("As senhas não coincidem.")
+      return
+    }
+    if (formData.password.length < 6) {
+      setError("A senha deve ter pelo menos 6 caracteres.")
+      return
+    }
+
+    setIsLoading(true)
+
+    try {
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          // You can pass user_metadata here if needed, which gets stored in auth.users table
+          // For client-specific data, we'll insert into the 'profiles' table separately.
+          data: {
+            full_name: formData.name, // This can be useful for pre-filling Supabase user data
+          }
+        }
+      })
+
+      if (signUpError) {
+        setError(signUpError.message)
+        setIsLoading(false)
+        return
+      }
+
+      if (!signUpData.user) {
+        setError("Não foi possível criar o usuário. Tente novamente.")
+        setIsLoading(false)
+        return
+      }
+
+      // Now, insert into the 'profiles' table
+      const { error: profileError } = await supabase
+        .from("profiles")
+        .insert({
+          id: signUpData.user.id, // Use the user's ID from auth.users as PK for profiles
+          user_id: signUpData.user.id, // Explicitly set user_id as FK
+          full_name: formData.name,
+          // email: formData.email, // Email is already in auth.users table
+          phone: formData.phone,
+          city: formData.city,
+          age: parseInt(formData.age, 10) || null,
+          profile_type: "cliente", // Set profile type
+          // avatar_url and bio can be null or set later
+        })
+
+      if (profileError) {
+        // If profile creation fails, ideally we might want to delete the auth user
+        // or handle this more gracefully. For now, just show an error.
+        console.error("Error creating profile:", profileError)
+        setError(`Usuário criado, mas houve um erro ao salvar o perfil: ${profileError.message}. Por favor, contate o suporte.`)
+        setIsLoading(false)
+        return
+      }
+
+      // Supabase sends a confirmation email by default.
+      // The user will be logged in, but their session might have limited capabilities until email is confirmed.
+      // Or, if email confirmation is disabled, they are fully logged in.
+      setSuccessMessage("Cadastro realizado com sucesso! Verifique seu e-mail para confirmação, se aplicável. Você será redirecionado.")
+
+      // Redirect after a short delay
+      setTimeout(() => {
+        router.push("/") // Redirect to home page or a dashboard
+      }, 3000)
+
+    } catch (catchError: any) {
+      setError(catchError.error_description || catchError.message || "Ocorreu um erro desconhecido.")
+    } finally {
+      // Do not set isLoading to false if a redirect is happening soon
+      // but ensure it's false if there was an error and no redirect.
+      if (error && !successMessage) {
+        setIsLoading(false)
+      }
+    }
   }
 
   return (
@@ -47,6 +133,20 @@ export function ClientSignupForm({ onBack }: ClientSignupFormProps) {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                  <Alert variant="destructive">
+                    <Terminal className="h-4 w-4" />
+                    <AlertTitle>Erro no Cadastro</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+                )}
+                {successMessage && (
+                  <Alert variant="default" className="bg-green-500/10 border-green-500 text-green-400">
+                    <Terminal className="h-4 w-4" />
+                    <AlertTitle>Sucesso!</AlertTitle>
+                    <AlertDescription>{successMessage}</AlertDescription>
+                  </Alert>
+                )}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-300 flex items-center">
                     <User className="h-4 w-4 mr-2 text-primary-500" />
@@ -164,8 +264,8 @@ export function ClientSignupForm({ onBack }: ClientSignupFormProps) {
                   </span>
                 </div>
 
-                <Button type="submit" className="w-full bg-primary-600 hover:bg-primary-700">
-                  Criar Conta
+                <Button type="submit" className="w-full bg-primary-600 hover:bg-primary-700" disabled={isLoading}>
+                  {isLoading ? "Criando conta..." : "Criar Conta"}
                 </Button>
               </form>
             </CardContent>
