@@ -63,11 +63,11 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: { // Re-purposing gold for a darker red/maroon accent
-          DEFAULT: "#B20710", // Darker Netflix Red
-          400: "#800000", // Maroon
-          500: "#660000", // Darker Maroon
-          600: "#4C0000", // Even Darker Maroon
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          400: "#fbbf24",
+          500: "#f59e0b",
+          600: "#d97706"
         },
         dark: { // Netflix-like blacks
           50: "#F5F5F5",
