@@ -12,7 +12,7 @@ export function SearchResults() {
     <div className="space-y-6">
       {/* Results Header */}
       <div className="flex items-center justify-between">
-        <h1 className="font-playfair text-3xl font-bold text-white">Resultados da Busca</h1>
+        <h1 className="text-3xl font-bold text-white">Resultados da Busca</h1>
         <span className="text-gray-400">{searchResults.length} perfis encontrados</span>
       </div>
 

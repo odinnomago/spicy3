@@ -23,7 +23,7 @@ export function SignupOptions() {
     <section className="py-16 min-h-[80vh] flex items-center">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-4 gradient-text">Junte-se ao Spicy Models</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Junte-se ao Spicy Models</h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Escolha como deseja participar da nossa plataforma premium
           </p>
@@ -39,7 +39,7 @@ export function SignupOptions() {
               <div className="mx-auto w-16 h-16 bg-primary-600/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-600/30 transition-colors">
                 <User className="h-8 w-8 text-primary-500" />
               </div>
-              <CardTitle className="text-2xl font-playfair text-white">Sou Cliente</CardTitle>
+              <CardTitle className="text-2xl text-white">Sou Cliente</CardTitle>
               <p className="text-gray-400">Encontre acompanhantes premium</p>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -74,7 +74,7 @@ export function SignupOptions() {
               <div className="mx-auto w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-gold-500/30 transition-colors">
                 <Camera className="h-8 w-8 text-gold-500" />
               </div>
-              <CardTitle className="text-2xl font-playfair text-white">Sou Modelo</CardTitle>
+              <CardTitle className="text-2xl text-white">Sou Modelo</CardTitle>
               <p className="text-gray-400">Monetize sua beleza e charme</p>
             </CardHeader>
             <CardContent className="space-y-4">

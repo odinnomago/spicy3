@@ -56,7 +56,7 @@ export function ModelSignupForm({ onBack }: ModelSignupFormProps) {
               <div className="mx-auto w-16 h-16 bg-gold-500/20 rounded-full flex items-center justify-center mb-4">
                 <Camera className="h-8 w-8 text-gold-500" />
               </div>
-              <CardTitle className="text-2xl font-playfair text-white flex items-center justify-center gap-2">
+              <CardTitle className="text-2xl text-white flex items-center justify-center gap-2">
                 Cadastro de Modelo
                 <Badge className="bg-gold-500 text-black">
                   <Crown className="h-3 w-3 mr-1" />

@@ -4,6 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Heart, Menu, User, X } from "lucide-react"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { SignupOptions } from "@/components/signup-options"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -33,36 +35,23 @@ export function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* Simulate logged in state - replace with actual auth logic */}
-            {false ? (
-              <div className="flex items-center space-x-3">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
-                    <User className="h-4 w-4 text-white" />
-                  </div>
-                  <span className="text-gray-300">João Silva</span>
-                </div>
-                <Button variant="ghost" size="sm">
-                  Trocar Perfil
-                </Button>
-                <Button variant="ghost" size="sm">
-                  Sair
-                </Button>
-              </div>
-            ) : (
-              <>
+            <Dialog>
+              <DialogTrigger asChild>
                 <Button variant="ghost" size="sm">
                   <User className="h-4 w-4 mr-2" />
                   Entrar
                 </Button>
-                <Button
-                  className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800"
-                  onClick={() => (window.location.href = "/cadastro")}
-                >
-                  Anunciar Grátis
-                </Button>
-              </>
-            )}
+              </DialogTrigger>
+              <DialogContent className="bg-dark-900 border-gray-800 p-0">
+                <SignupOptions />
+              </DialogContent>
+            </Dialog>
+            <Button
+              className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800"
+              onClick={() => (window.location.href = "/cadastro")}
+            >
+              Anunciar Grátis
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -85,36 +74,23 @@ export function Header() {
                 Seja VIP
               </Link>
               <div className="flex flex-col space-y-2 pt-4 border-t border-gray-800">
-                {/* Simulate logged in state - replace with actual auth logic */}
-                {false ? (
-                  <>
-                    <div className="flex items-center space-x-2 text-gray-300">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center">
-                        <User className="h-3 w-3 text-white" />
-                      </div>
-                      <span>João Silva</span>
-                    </div>
-                    <Button variant="ghost" size="sm">
-                      Trocar Perfil
-                    </Button>
-                    <Button variant="ghost" size="sm">
-                      Sair
-                    </Button>
-                  </>
-                ) : (
-                  <>
+                <Dialog>
+                  <DialogTrigger asChild>
                     <Button variant="ghost" size="sm">
                       <User className="h-4 w-4 mr-2" />
                       Entrar
                     </Button>
-                    <Button
-                      className="bg-gradient-to-r from-primary-600 to-primary-700"
-                      onClick={() => (window.location.href = "/cadastro")}
-                    >
-                      Anunciar Grátis
-                    </Button>
-                  </>
-                )}
+                  </DialogTrigger>
+                  <DialogContent className="bg-dark-900 border-gray-800 p-0">
+                    <SignupOptions />
+                  </DialogContent>
+                </Dialog>
+                <Button
+                  className="bg-gradient-to-r from-primary-600 to-primary-700"
+                  onClick={() => (window.location.href = "/cadastro")}
+                >
+                  Anunciar Grátis
+                </Button>
               </div>
             </nav>
           </div>

@@ -148,7 +148,7 @@ export function ProfileDetails({ profileId }: ProfileDetailsProps) {
             <CardContent className="p-6">
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <h1 className="font-playfair text-3xl font-bold text-white mb-2">
+                  <h1 className="text-3xl font-bold text-white mb-2">
                     {profile.name}, {profile.age}
                   </h1>
                   <div className="flex items-center text-gray-400 mb-2">

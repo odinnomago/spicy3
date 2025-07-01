@@ -42,7 +42,7 @@ export function StoriesSection() {
   return (
     <section className="py-8 bg-dark-900/30">
       <div className="container mx-auto px-4">
-        <h2 className="font-playfair text-2xl font-bold mb-6 text-white">Momentos Recentes</h2>
+        <h2 className="text-2xl font-bold mb-6 text-white">Momentos Recentes</h2>
 
         <div className="flex space-x-4 overflow-x-auto pb-4">
           {/* Add Story Button (for models) */}
