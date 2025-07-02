@@ -4,7 +4,7 @@ import { LandingShortcutsSection } from "@/components/landing-shortcuts-section"
 import { LandingAdvantagesSection } from "@/components/landing-advantages-section";
 import { LandingFeaturedModelsSection } from "@/components/landing-featured-models-section";
 import { LandingCheckoutPlansSection } from "@/components/landing-checkout-plans-section";
-import { LandingFooter as Footer } from "@/components/landing-footer";
+import { Footer } from "@/components/footer";
 
 export default function HomePage() {
   return (

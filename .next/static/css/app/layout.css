@@ -1846,9 +1846,6 @@ body {
 .fill-gold-500 {
   fill: #f59e0b;
 }
-.object-cover {
-  object-fit: cover;
-}
 .p-0 {
   padding: 0px;
 }
