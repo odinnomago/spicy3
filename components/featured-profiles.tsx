@@ -3,9 +3,19 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Star, Eye, Heart, Shield } from "lucide-react"
+import { MapPin, Star, Eye, Flame, Shield } from "lucide-react"
 
-const featuredProfiles = []
+interface Profile {
+  id: string;
+  name: string;
+  rating: number;
+  city: string;
+  price: string;
+  isVip: boolean;
+  isOnline: boolean;
+}
+
+const featuredProfiles: Profile[] = [];
 
 export function FeaturedProfiles() {
   return (
@@ -53,7 +63,7 @@ export function FeaturedProfiles() {
                       // Handle favorite logic
                     }}
                   >
-                    <Heart className="h-4 w-4" />
+                    <Flame className="h-4 w-4" />
                   </Button>
                 </div>
 

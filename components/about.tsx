@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heart, Shield, Crown } from "lucide-react";
+import { Flame, Shield, Crown } from "lucide-react";
 
 export function About() {
   return (
@@ -16,7 +16,7 @@ export function About() {
           <Card className="bg-dark-900 border-gray-800 p-6">
             <CardHeader className="flex-row items-center gap-4 mb-4">
               <div className="bg-primary-500/20 p-3 rounded-full">
-                <Heart className="h-8 w-8 text-primary-500" />
+                <Flame className="h-8 w-8 text-primary-500" />
               </div>
               <CardTitle className="text-2xl font-bold">Quem Somos</CardTitle>
             </CardHeader>

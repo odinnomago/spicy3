@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Heart, Mail, Phone, MapPin } from "lucide-react"
+import { Flame, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   return (
@@ -9,7 +9,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Heart className="h-6 w-6 text-primary-500" />
+              <Flame className="h-6 w-6 text-primary-500" />
               <span className="text-xl font-bold gradient-text">Spicy Models</span>
             </div>
             <p className="text-gray-400 text-sm">

@@ -1,4 +1,4 @@
-// File: /Users/Odinn/Documents/GitHub/spicy3/app/busca/page.tsx
+// File: C:\Users\hakun\Documents\spicy3\spicy3\app\busca\page.tsx
 import * as entry from '../../../../app/busca/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

@@ -1,8 +1,6 @@
 {
   "/page": "app/page.js",
+  "/sobre/page": "app/sobre/page.js",
   "/vip/page": "app/vip/page.js",
-  "/suporte/page": "app/suporte/page.js",
-  "/busca/page": "app/busca/page.js",
-  "/cadastro/page": "app/cadastro/page.js",
-  "/termos/page": "app/termos/page.js"
+  "/busca/page": "app/busca/page.js"
 }

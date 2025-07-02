@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Heart, Menu, User, X } from "lucide-react"
+import { Flame, Menu, User, X } from "lucide-react"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { LoginForm } from "@/components/login-form"
 
@@ -16,7 +16,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Heart className="h-8 w-8 text-primary-500" />
+            <Flame className="h-8 w-8 text-primary-500" />
             <span className="text-2xl font-bold gradient-text">Spicy Models</span>
           </Link>
 

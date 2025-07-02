@@ -1,4 +1,4 @@
-// File: /Users/Odinn/Documents/GitHub/spicy3/app/sobre/page.tsx
+// File: C:\Users\hakun\Documents\spicy3\spicy3\app\sobre\page.tsx
 import * as entry from '../../../../app/sobre/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

@@ -2,7 +2,8 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { ShieldCheck, Heart, Users, Gem } from "lucide-react";
+import { ShieldCheck, Flame, Users, Gem } from "lucide-react";
+import { AnimatedText } from "@/components/animated-text";
 
 export function LandingAdvantagesSection() {
   const advantages = [
@@ -12,7 +13,7 @@ export function LandingAdvantagesSection() {
       description: "Priorizamos sua privacidade com perfis verificados e comunicação segura.",
     },
     {
-      icon: <Heart className="h-10 w-10 text-red-500 mb-4" />,
+      icon: <Flame className="h-10 w-10 text-red-500 mb-4" />,
       title: "Experiências Memoráveis",
       description: "Conecte-se com modelos de luxo para momentos inesquecíveis e personalizados.",
     },
@@ -31,16 +32,20 @@ export function LandingAdvantagesSection() {
   return (
     <section className="bg-dark-950 py-16 text-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">Por Que Escolher a Spicy Models?</h2>
+        <AnimatedText>
+          <h2 className="text-4xl font-bold text-center mb-12">Por Que Escolher a Spicy Models?</h2>
+        </AnimatedText>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {advantages.map((advantage, index) => (
-            <Card key={index} className="bg-dark-900 border-gray-800 text-center p-6 transform hover:-translate-y-2 transition-transform duration-300 shadow-lg hover:shadow-red-500/20">
-              <CardContent className="p-0">
-                {advantage.icon}
-                <h3 className="text-xl font-bold mb-2">{advantage.title}</h3>
-                <p className="text-gray-400 text-sm">{advantage.description}</p>
-              </CardContent>
-            </Card>
+            <AnimatedText key={index} delay={index * 0.1}>
+              <Card className="bg-dark-900 border-gray-800 text-center p-6 transform hover:-translate-y-2 transition-transform duration-300 shadow-lg hover:shadow-red-500/20">
+                <CardContent className="p-0">
+                  {advantage.icon}
+                  <h3 className="text-xl font-bold mb-2">{advantage.title}</h3>
+                  <p className="text-gray-400 text-sm">{advantage.description}</p>
+                </CardContent>
+              </Card>
+            </AnimatedText>
           ))}
         </div>
       </div>

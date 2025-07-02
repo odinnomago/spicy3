@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Star, MapPin, Phone, MessageCircle, Gift, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 const mockModel = {
   name: "Alessandra",
@@ -43,7 +44,7 @@ export function ModelProfile() {
             <Card className="bg-dark-900 border-gray-800">
               <CardContent className="p-4">
                 <div className="aspect-[4/5] w-full rounded-lg overflow-hidden mb-4">
-                  <img src={mainImage} alt={mockModel.name} className="w-full h-full object-cover" />
+                  <Image src={mainImage} alt={mockModel.name} layout="fill" objectFit="cover" />
                 </div>
                 <div className="grid grid-cols-5 gap-2">
                   {mockModel.gallery.map((img, index) => (
@@ -52,7 +53,7 @@ export function ModelProfile() {
                       className={`aspect-square rounded-md cursor-pointer border-2 transition-all ${mainImage === img ? 'border-primary-500' : 'border-transparent hover:border-gray-600'}`}
                       onClick={() => setMainImage(img)}
                     >
-                      <img src={img} alt={`${mockModel.name} ${index + 1}`} className="w-full h-full object-cover rounded-sm" />
+                      <Image src={img} alt={`${mockModel.name} ${index + 1}`} layout="fill" objectFit="cover" className="rounded-sm" />
                     </div>
                   ))}
                 </div>
